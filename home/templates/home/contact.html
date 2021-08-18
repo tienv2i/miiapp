@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+{% block 'content' %}
+    {% include 'navbar.html' %}
+
+    This is Contact Page!
+{% endblock %}
+
+{% block 'style' %}
+    {% render_bundle 'app' 'css' %}
+{% endblock %}
+
+{% block 'scripts' %}
+    {% render_bundle 'app' 'js' %}
+{% endblock %}
+

@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+    db:
+        image: 'postgres:latest'
+        container_name: postgresdb
+        volumes: 
+            - ./pgdata:/var/lib/postgresql/data/pgdata
+        restart: always
+        env_file: 
+            - .env
+    web:
+        build: '.'
+        container_name: 'djangosvc'
+        ports: 
+            - 8000:8000
+        restart: always
+        volumes: 
+            - .:/usr/app
+        depends_on: 
+            - db
+        env_file: 
+            - .env
+    # nginx:
+    #     build: './nginx'
+    #     container_name: 'nginx_server'
+    #     volumes: 
+    #         - .:/usr/app
+    #     ports: 
+    #         - 80:80
+    #     depends_on: 
+    #         - web
+    #         - db
+    #     env_file: 
+    #         - .env
+    adminer:
+        image: adminer:latest
+        container_name: adminer
+        ports: 
+            - 8080:8080
+        depends_on: 
+            - db
+        env_file: 
+            - .env
