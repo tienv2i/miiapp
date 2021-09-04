@@ -5,13 +5,13 @@ const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
     entry: {
-        app: './frontend/app.js',
-        home: './frontend/home.js',
+        app: './frontend/src/app.js',
+        home: './frontend/src/home.js',
     },
     output: {
         path: path.resolve(__dirname, '../frontend/dist'),
         publicPath: '/static/',
-        filename: 'js/[name].[hash:8].js'
+        filename: 'js/[name].[fullhash:8].js'
     },
     module: {
         rules: [
@@ -31,31 +31,24 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
-                use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                        filename: 'images/[name].[hash:8].[ext]'
-                    }
-                  },
-                ],
+                type: 'asset/resource',
+		generator: {
+			filename: 'img/[filename][fullhash:8].[ext]'
+		}
             },
             {
                 test: /\.(woff|ttf|oet)$/i,
-                use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                        filename: 'fonts/[name].[hash:8].[ext]'
-                    }
-                  },
-                ],
+                type: 'asset/resource',
+		generator: {
+			filename: 'fonts/[filename][fullhash:8].[ext]'
+		}
+
             }
         ]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/style.css',
+		filename: 'css/style.[fullhash:8].css',
         }),
         new CleanWebpackPlugin(),
         new BundleTracker({
@@ -66,21 +59,6 @@ module.exports = {
         runtimeChunk: 'single',
         splitChunks: {
           chunks: 'all',
-          // maxInitialRequests: Infinity,
-          // minSize: 0,
-          // cacheGroups: {
-          //   vendor: {
-          //     test: /[\\/]node_modules[\\/]/,
-          //     name(module) {
-          //       // get the name. E.g. node_modules/packageName/not/this/part.js
-          //       // or node_modules/packageName
-          //       const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-      
-          //       // npm package names are URL-safe, but some servers don't like @ symbols
-          //       return `npm.${packageName.replace('@', '')}`;
-          //     },
-          //   },
-          // },
         },
     }
 }
