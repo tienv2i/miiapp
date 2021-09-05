@@ -5,6 +5,7 @@ from .forms import ContactMessageForm
 def contact(request):
     if request.method == 'POST':
         form = ContactMessageForm(request.POST)
+        print(request.POST)
         if form.is_valid():
             form.save()
             status = 'form_saved'

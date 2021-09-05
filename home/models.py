@@ -6,7 +6,7 @@ class ContactMessage(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     title = models.CharField(max_length=255, unique=True)
-    message = models.TextField(max_length=255)
+    message = models.TextField()
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
