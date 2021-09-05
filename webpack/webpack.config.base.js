@@ -11,7 +11,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../frontend/dist'),
         publicPath: '/static/',
-        filename: 'js/[name].[fullhash:8].js'
+        filename: 'js/[name].[fullhash:8].js',
     },
     module: {
         rules: [
@@ -60,5 +60,5 @@ module.exports = {
         splitChunks: {
           chunks: 'all',
         },
-    }
+    },
 }

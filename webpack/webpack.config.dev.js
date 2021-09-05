@@ -7,5 +7,5 @@ module.exports = merge(require('./webpack.config.base'), {
         port: 9000,
         writeToDisk: true,
         watchContentBase: true,
-    }
+    },
 });

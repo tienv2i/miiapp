@@ -138,7 +138,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'frontend' / 'dist',
-    BASE_DIR / 'static'
+    PROJECT_DIR / 'static'
 
 ]
 
