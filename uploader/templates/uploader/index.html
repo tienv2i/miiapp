@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+{% load widget_tweaks %}
+{% block 'content' %}
+    {% include 'navbar.html' %}
+    <div class="container-fluid mt-3" style="max-width:1200px;">
+        <div class="card" style="max-width: 600px; margin: 0px auto;">
+            <div class="card-header text-center" style="margin-top: -1px">
+                <b>MiiApp - Uploader</b>
+            </div>
+            <div class="card-body">
+                {% if status == 'file_saved' %}
+                    <div class="alert alert-success">File Uploaded ...!</div>
+                {% endif %}
+                {% if status == 'file_invalid' %}
+                    <div class="alert alert-danger">Upload file failed ...!</div>
+                {% endif %}
+                <form action="{% url 'uploader:index' %}" method="POST" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        {% render_field form.document class="form-control" id="inputGroupFile01" style="margin-left: 1px;"%}
+                        </div>
+                    <div class="input-group mb-3">
+                        <label for="id_description" class="input-group-text">Description: </label>
+                        {% render_field form.description class="form-control" %}
+                    </div>
+                    <div class="mb-3">
+                        {% csrf_token %}
+                        <input type="submit" value="Upload" class="btn btn-primary" />
+                        <input type="reset" value="Reset" class="btn btn-danger" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block 'style' %}
+    {% render_bundle 'app' 'css' %}
+{% endblock %}
+
+{% block 'scripts' %}
+    {% render_bundle 'app' 'js' %}
+{% endblock %}
+
