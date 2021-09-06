@@ -16,6 +16,7 @@ done
 
 
 python manage.py makemigrations
+# python manage.py collecstatic --no-input
 python manage.py migrate
 
 
