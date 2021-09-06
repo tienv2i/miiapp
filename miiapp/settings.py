@@ -160,8 +160,8 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SUMMERNOTE_CONFIG = {
     'summernote': {
-        'width': '100%',
-        'height': '480px',
+        'width': '735px',
+        'height': '450px',
         'toolbar': [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
