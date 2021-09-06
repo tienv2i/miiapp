@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'widget_tweaks',
     'django_summernote',
+    'taggit',
     'home',
     'uploader',
     'blog',
@@ -141,7 +142,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'frontend' / 'dist',
     PROJECT_DIR / 'static',
-    BASE_DIR / 'node_modules' / 'katex' / 'dist',
     BASE_DIR / 'frontend' / 'library'
 ]
 
@@ -174,10 +174,10 @@ SUMMERNOTE_CONFIG = {
         ],
     },
     'css': (
-        '/static/katex.min.css',
+        '/static/katex/katex.min.css',
     ),
     'js': (
         '/static/summernote-math/summernote-math.js',
-        '/static/katex.min.js'
+        '/static/katex/katex.min.js'
     ),
 }

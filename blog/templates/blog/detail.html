@@ -9,11 +9,17 @@
             <div class="col-lg-8">
                 <div class="card post-detail mb-3">
                     <div class="card-body">
+                        {% if post %}
                         <h3>{{ post.title }}</h3>
                             <span class="text-muted">Author: {{ post.author }}. Created on: {{ post.created_on | date:'m-d-Y h:i A'}} <br/></span>
                             <div class="post-list-excerpt mb-3 mt-3">
                                 {{ post.content|safe }}
                             </div>
+                        {% else %}
+                            <div class="alert alert-danger">
+                                Post not found ...!
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -26,11 +32,11 @@
 
 {% block 'style' %}
     {% render_bundle 'main' 'css' %}
-    <link rel="stylesheet" href="{% static 'katex.min.css'%}">
+    <link rel="stylesheet" href="{% static 'katex/katex.min.css'%}">
 {% endblock %}
 
 {% block 'scripts' %}
     {% render_bundle 'main' 'js' %}
-    <script src="{% static 'katex.min.js'%}"></script>
+    <script src="{% static 'katex/katex.min.js'%}"></script>
 {% endblock %}
 

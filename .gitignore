@@ -6,5 +6,3 @@ node_modules
 yarn.*
 */dist
 */webpack-stats.json
-*/migrations/000*
-migrations/000*

@@ -5,3 +5,4 @@ gunicorn
 django-webpack-loader
 django-widget-tweaks
 django-summernote
+django-taggit

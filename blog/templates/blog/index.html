@@ -7,47 +7,36 @@
     <div class="container-fluid mt-3" style="max-width:1200px">
         <div class="row">
             <div class="col-lg-8">
-            {% for post in page_obj %}
-                <div class="card mb-3 post-list-item">
-                    <div class="card-body row">
-                        <div class="col-md-4 " style="overflow:hidden">
-                            <img src="{% firstof post.image 'https://dummyimage.com/600x400/000/fff' %}" alt="{{post.title}}" class="post-list-image"/>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>{{ post.title }}</h3>
-                            <span class="text-muted">Author: {{ post.author }}. Created on: {{ post.created_on | date:'m-d-Y h:i A'}} <br/></span>
-                            <div class="post-list-excerpt mb-3 mt-3">
-                                {% firstof post.excerpt|safe post.content|safe %}
+            {% if page_obj %}
+                {% for post in page_obj %}
+                    <div class="card mb-3 post-list-item">
+                        <div class="card-body row">
+                            <div class="col-md-12 mb-3">
+                                <h3>{{ post.title }}</h3>
+                                <span class="text-muted">Author: {{ post.author }}. Created on: {{ post.created_on | date:'m-d-Y h:i A'}} <br/></span>
                             </div>
-                            <a href="{% url 'blog:detail' post.slug %}" class="btn btn-primary post-list-title">Readmore...</a><br/>
+                            <div class="col-md-4 " style="overflow:hidden">
+                                <img src="{% firstof post.image 'https://dummyimage.com/600x400/000/fff' %}" alt="{{post.title}}" class="post-list-image"/>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="post-list-excerpt mb-3">
+                                    {% firstof post.excerpt|safe post.content|safe %}
+                                </div>
+                                <a href="{% url 'blog:detail' post.slug %}" class="btn btn-primary post-list-title">Readmore...</a><br/>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% include 'blog/paginator.html' %}
+            {% else %}
+                <div class="card mb-3 post-list-item">
+                    <div class="card-body">
+                        <div class="alert alert-danger">
+                            There is no post here ..!
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                    {% else %}
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                    {% endif %}
-                        
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" >Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
-                    </li>
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1" aria-disabled="true">Next</a>
-                        </li>
-                    {% else %}
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-                        </li>
-                    {% endif %}
-                </ul>
+            {% endif %}
             </div>
             <div class="col-lg-4">
                 Widgets
@@ -58,10 +47,10 @@
 
 {% block 'style' %}
     {% render_bundle 'main' 'css' %}
-    <link rel="stylesheet" href="{% static 'katex.min.css'%}">
+    <link rel="stylesheet" href="{% static 'katex/katex.min.css'%}">
 {% endblock %}
 
 {% block 'scripts' %}
     {% render_bundle 'main' 'js' %}
-    <script src="{% static 'katex.min.js'%}"></script>
+    <script src="{% static 'katex/katex.min.js'%}"></script>
 {% endblock %}

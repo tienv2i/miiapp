@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('blog', include('blog.urls', namespace='blog')),
-    path('uploader', include('uploader.urls', namespace='uploader')),
+    path('blog/', include('blog.urls', namespace='blog')),
+    path('uploader/', include('uploader.urls', namespace='uploader')),
     path('summernote/', include('django_summernote.urls')),
     path('admin/', admin.site.urls),
     path('', include('home.urls', namespace='home')),
