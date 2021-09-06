@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from django_quill.fields import QuillField
+#from django_quill.fields import QuillField
 # Create your models here.
 
 class ContactMessage(models.Model):

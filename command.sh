@@ -17,12 +17,13 @@ done
 
 python manage.py makemigrations
 python manage.py migrate
-# python manage.py collectstatic --no-input
-python init.py
+
 
 if [[ "$DEBUG" == "True" ]];
 then
     python manage.py runserver 0.0.0.0:8000
 else
-    gunicorn --bind :8000 miicms.wsgi:application
+    gunicorn --bind :8000 miiapp.wsgi:application
 fi
+
+
