@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from .forms import DocumentForm
 from .models import Document
 
 # Create your views here.
-@staff_member_required
+@login_required(login_url='/admin/login/')
 def index(request):
     if request.method=='POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -26,8 +26,6 @@ def index(request):
         'form': form,
         'status': status,
         'title': 'MiiApp - Uploader',
-        'docs': docs,
-        'paginator': paginator,
         'page_obj': page_obj
     })
 

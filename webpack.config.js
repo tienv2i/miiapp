@@ -61,4 +61,10 @@ module.exports = {
           chunks: 'all',
         },
     },
+    resolve: {
+        alias: {
+            img: path.resolve(__dirname, 'frontend/img')
+        }
+    },
+    devtool: 'eval-cheap-source-map'
 }

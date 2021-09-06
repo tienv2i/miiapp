@@ -1,0 +1,3 @@
+[submodule "frontend/library/frontend/library/summernote-math"]
+	path = frontend/library/frontend/library/summernote-math
+	url = https://github.com/tylerecouture/summernote-math

@@ -4,10 +4,8 @@
   "description": "Mii application framework by HuynhAT",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
-    "build-dev": "cross-env NODE_ENV=development webpack --config ./webpack/webpack.config.dev.js",
-    "watch": "cross-env NODE_ENV=development webpack --watch --config ./webpack/webpack.config.dev.js",
-    "serve": "cross-env NODE_ENV=development webpack serve --config ./webpack/webpack.config.dev.js"
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js",
+    "watch": "cross-env NODE_ENV=development webpack --watch --config ./webpack.config.js"
   },
   "author": "tienv2i<tienv2i@gmail.com>",
   "license": "MIT",
