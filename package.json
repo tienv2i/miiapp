@@ -35,6 +35,7 @@
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.1.0",
     "cross-env": "^7.0.3",
+    "katex": "^0.13.18",
     "mathjax": "^3.2.0"
   }
 }

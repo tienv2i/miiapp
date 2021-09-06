@@ -1,10 +1,10 @@
 from django.db.models import fields
 from django.db.models.base import Model
 from django.forms import ModelForm
-from .models import Document
+from .models import File
 
-class DocumentForm(ModelForm):
+class FileForm(ModelForm):
     class Meta:
-        model = Document
-        fields = ('description', 'document')
+        model = File
+        fields = ('description', 'file')
         

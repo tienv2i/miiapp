@@ -4,12 +4,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
-    entry: {
-        app: './frontend/src/app.js',
-        home: './frontend/src/home.js',
+    entry: { 
+        main: './frontend/src/index.js',
     },
     output: {
-        path: path.resolve(__dirname, '../frontend/dist'),
+        path: path.resolve(__dirname, './frontend/dist'),
         publicPath: '/static/',
         filename: 'js/[name].[fullhash:8].js',
     },

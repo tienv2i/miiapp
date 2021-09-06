@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webpack_loader',
     'widget_tweaks',
+    'django_summernote',
     'home',
     'uploader',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +140,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'frontend' / 'dist',
-    PROJECT_DIR / 'static'
-
+    PROJECT_DIR / 'static',
+    BASE_DIR / 'node_modules' / 'katex' / 'dist',
+    BASE_DIR / 'frontend' / 'library'
 ]
 
 MEDIA_URL = 'media/'
@@ -152,4 +155,29 @@ WEBPACK_LOADER = {
     'DEFAULT': {
         'STATS_FILE': BASE_DIR / 'frontend' / 'webpack-stats.json',
     }
+}
+X_FRAME_OPTIONS = 'SAMEORIGIN' 
+
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'width': '100%',
+        'height': '480px',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'math']],
+            ['view', ['fullscreen', 'codeview', 'help' ]],
+        ],
+    },
+    'css': (
+        '/static/katex.min.css',
+    ),
+    'js': (
+        '/static/summernote-math/summernote-math.js',
+        '/static/katex.min.js'
+    ),
 }

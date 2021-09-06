@@ -21,7 +21,7 @@
                     {% endif %}
                     <form action="{% url 'uploader:index' %}" method="POST" enctype="multipart/form-data">
                         <div class="input-group mb-3">
-                            {% render_field form.document class="form-control" id="inputGroupFile01" style="margin-left: 1px;"%}
+                            {% render_field form.file class="form-control" id="inputGroupFile01" style="margin-left: 1px;"%}
                             </div>
                         <div class="input-group mb-3">
                             <label for="id_description" class="input-group-text">Description: </label>
@@ -44,7 +44,7 @@
                 <ul class="list-group list-group-flush file-list">
                     {% for doc in page_obj %}
                     <li class="list-group-item">
-                        <a href="{{ doc.document.url }}" target="_blank">{% firstof doc.description doc.document.name|filename %}</a>
+                        <a href="{{ doc.file.url }}" target="_blank">{% firstof doc.description doc.file.name|filename %}</a>
                     </li>
                     {% endfor %}
                     <li class="list-group-item">
@@ -83,10 +83,10 @@
 {% endblock %}
 
 {% block 'style' %}
-    {% render_bundle 'app' 'css' %}
+    {% render_bundle 'main' 'css' %}
 {% endblock %}
 
 {% block 'scripts' %}
-    {% render_bundle 'app' 'js' %}
+    {% render_bundle 'main' 'js' %}
 {% endblock %}
 
