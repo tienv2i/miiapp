@@ -177,8 +177,11 @@ SUMMERNOTE_CONFIG = {
         '/static/katex/katex.min.css',
     ),
     'js': (
-        '/static/library/summernote-math/summernote-math.js',
-        '/static/library/katex/katex.min.js'
+        '/static/katex/katex.min.js',
+        '/static/summernote-math/summernote-math.js',
+        '/static/huynhat/fix-summernote.js',
+        
     ),
+    'attachment_model': 'uploader.Attachment',
 }
     

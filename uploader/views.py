@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from .forms import FileForm
-from .models import File
+from .forms import AttachmentForm
+from .models import Attachment
 
 # Create your views here.
 @login_required(login_url='/admin/login/')
 def index(request):
     if request.method=='POST':
-        form = FileForm(request.POST, request.FILES)
+        form = AttachmentForm(request.POST, request.FILES)
         if form.is_valid():
             print(form)
             form.save()
@@ -16,9 +16,9 @@ def index(request):
         else:
             status = 'file_invalid'
     else:
-        form = FileForm()
+        form = AttachmentForm()
         status = 'file_selectting'
-    docs = File.objects.order_by('-uploaded_at').all()
+    docs = Attachment.objects.order_by('-uploaded_at').all()
     page_number = request.GET.get('page')
     paginator = Paginator(docs, 10)
     page_obj = paginator.get_page(page_number)
@@ -29,7 +29,7 @@ def index(request):
         'page_obj': page_obj
     })
 
-# class FileListView(ListView):
-#     model = File
+# class AttachmentListView(ListView):
+#     model = Attachment
 #     paginate_by = 2
 #     template_name = 'uploader/files'

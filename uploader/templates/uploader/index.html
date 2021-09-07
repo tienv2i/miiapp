@@ -24,8 +24,8 @@
                             {% render_field form.file class="form-control" id="inputGroupFile01" style="margin-left: 1px;"%}
                             </div>
                         <div class="input-group mb-3">
-                            <label for="id_description" class="input-group-text">Description: </label>
-                            {% render_field form.description class="form-control" %}
+                            <label for="id_name" class="input-group-text">Name: </label>
+                            {% render_field form.name class="form-control" %}
                         </div>
                         <div class="mb-3">
                             {% csrf_token %}
@@ -44,7 +44,7 @@
                 <ul class="list-group list-group-flush file-list">
                     {% for doc in page_obj %}
                     <li class="list-group-item">
-                        <a href="{{ doc.file.url }}" target="_blank">{% firstof doc.description doc.file.name|filename %}</a>
+                        <a href="{{ doc.file.url }}" target="_blank">{% firstof doc.name doc.file.name|filename %}</a>
                     </li>
                     {% endfor %}
                     <li class="list-group-item">

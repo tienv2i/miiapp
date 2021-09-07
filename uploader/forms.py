@@ -1,10 +1,8 @@
-from django.db.models import fields
-from django.db.models.base import Model
 from django.forms import ModelForm
-from .models import File
+from .models import Attachment
 
-class FileForm(ModelForm):
+class AttachmentForm(ModelForm):
     class Meta:
-        model = File
-        fields = ('description', 'file')
+        model = Attachment
+        fields = ('name', 'file')
         
