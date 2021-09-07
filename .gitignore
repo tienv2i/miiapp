@@ -7,3 +7,8 @@ yarn.*
 */dist
 */webpack-stats.json
 staticfiles/*
+*/__pycache__
+*/migrations/000*.py
+*.swp
+*.log
+*.lock
