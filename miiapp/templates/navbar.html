@@ -8,22 +8,61 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:index' %}">Blog</a>
+                </li>
                 {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'home:index' %}">Home</a> {% endcomment %}
-                <a class="nav-link" href="{% url 'blog:index' %}">Blog</a>
-                <a class="nav-link" href="{% url 'uploader:index' %}">Uploader</a>
-                <a class="nav-link" href="{% url 'home:about' %}">About</a>
-                <a class="nav-link" href="{% url 'home:contact' %}">Contact me!</a>
-                {% if user.is_authenticated %}
-                    {%if user.is_staff or user.is_supperuser %}
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin page</a>
-                    {% endif %}
-                        <a class="nav-link" href="{% url 'admin:logout' %}?next={{ request.get_full_path }}">Logout</a>
-                {% else %}
-                    <a class="nav-link" href="{% url 'admin:login' %}?next={{ request.get_full_path }}">Login</a>
-                {% endif %}
-                {% comment %} <a class="nav-link" href="{% url 'home:about' %}">Contact</a> {% endcomment %}
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'uploader:index' %}">Uploader</a>
+                </li>
+               
+            </ul>
+            <ul class="navbar-nav d-flex">
+                <li class="nav-item dropdown">
+                    {% comment %} <a class="nav-link" href="{% url 'home:about' %}" style="display:inline-block;padding-right:0px;">About</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="display:inline-block;padding-left:0px;" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b class="caret"></b>
+                    </a> {% endcomment %}
+                    <a class="nav-link dropdown-toggle" href="{% url 'home:about' %}" data-bs-toggle="dropdown"  id="aboutToggler">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu" id = "aboutDropdownMenu" aria-labelledby="aboutToggler">
+                        {% if user.is_authenticated %}
+                            {%if user.is_staff or user.is_supperuser %}
+                            <li>
+                                <a class="nav-link dropdown-item" href="{% url 'admin:index' %}">Admin page</a>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <a class="nav-link dropdown-item" href="{% url 'account:logout' %}?next={{ request.get_full_path }}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="nav-link dropdown-item" href="{% url 'account:login' %}?next={{ request.get_full_path }}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                 <li class="nav-item dropdown me-2">
+                    {% comment %} <a class="nav-link" href="{% url 'home:about' %}" style="display:inline-block;padding-right:0px;">About</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="display:inline-block;padding-left:0px;" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b class="caret"></b>
+                    </a> {% endcomment %}
+                    <a class="nav-link dropdown-toggle" href="{% url 'home:about' %}" data-bs-toggle="dropdown"  id="aboutToggler">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu" id = "aboutDropdownMenu" aria-labelledby="aboutToggler">
+                        <li><a class="nav-link dropdown-item" href="{% url 'home:about' %}" >About.</a></li>
+                        <li><a class="nav-link dropdown-item" href="{% url 'home:contact' %}">Contact me!</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
-</nav>
+</nav>  

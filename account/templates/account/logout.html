@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+{% block 'content' %}
+    {% include 'navbar.html' %}
+    <div class="container-fluid" style="max-width:1200px">
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <h4 class="card-header text-center">
+                        Login to MiiApp
+                    </h4>
+                    <div class="card-body">
+                        {% if status == 'logout_successed' %}
+                            <div class="alert alert-success">
+                                Logged out, <a href="{{ next }}"> Go back << </a>
+                            </div>
+                        {% endif %}
+                        {% if status == 'logout_user_do_not_login' %}
+                            <div class="alert alert-danger">
+                                You is not logged in, please <a href="{% url 'account:login'%}?next={{next}}">login >></a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+   
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block 'style' %}
+    {% render_bundle 'main' 'css' %}
+{% endblock %}
+
+{% block 'scripts' %}
+    {% render_bundle 'main' 'js' %}
+    {% if status == 'logout_successed' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            window.setTimeout(function() {
+                window.location.href = '{{ next }}'
+            }, 3000);
+        })
+    </script>
+    {% endif %}
+{% endblock %}
+

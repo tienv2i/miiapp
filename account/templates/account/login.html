@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+{% load widget_tweaks %}
+{% block 'content' %}
+    {% include 'navbar.html' %}
+    <div class="container-fluid" style="max-width:1200px">
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <h4 class="card-header text-center">
+                        Login to MiiApp
+                    </h4>
+                    <div class="card-body">
+                        {% if status == 'login_successed' %}
+                            <div class="alert alert-success">
+                                Loggin success, <a href="{{ next }}"> Go back << </a>
+                            </div>
+                        {% elif user.is_authenticated %}
+                            <div class="alert alert-danger">
+                                You is aldready logged in as <b>{{ user.username }} </b>, please <a href="{% url 'account:logout'%}">logout</a>
+                            </div>
+                        {% else %}
+                            {% if status == 'login_failed' %}
+                                <div class="alert alert-danger">
+                                    Loggin failed, please check again.
+                                </div>
+                            {% endif %}
+
+                            <form action="{% url 'account:login'%}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{next}}" />
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" style="width: 95px;">Username:</span>
+                                    {% render_field form.username class='form-control' %}
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" style="width: 95px;">Password:</span>
+                                    {% render_field form.password class='form-control' type="password" %}
+                                </div>
+                                <div>
+                                    <input type="submit" value="Login" class="btn btn-primary"/> 
+                                    <input type="reset" value="Reset" class="btn btn-danger"/> 
+                                    <a href="#" class="btn btn-info">Register</a>
+                                </div>
+                            </form>
+                            
+                        {% endif %}
+                    </div>
+                </div>
+   
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block 'style' %}
+    {% render_bundle 'main' 'css' %}
+{% endblock %}
+
+{% block 'scripts' %}
+    {% render_bundle 'main' 'js' %}
+    {% if status == 'login_successed' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            window.setTimeout(function() {
+                window.location.href = '{{ next }}'
+            }, 3000);
+        })
+    </script>
+    {% endif %}
+{% endblock %}
+

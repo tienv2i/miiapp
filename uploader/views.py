@@ -18,7 +18,7 @@ def index(request):
     else:
         form = AttachmentForm()
         status = 'file_selectting'
-    docs = Attachment.objects.order_by('-uploaded_at').all()
+    docs = Attachment.objects.order_by('-uploaded').all()
     page_number = request.GET.get('page')
     paginator = Paginator(docs, 10)
     page_obj = paginator.get_page(page_number)

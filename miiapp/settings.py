@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_summernote',
     'taggit',
+    'account',
     'home',
     'uploader',
     'blog',

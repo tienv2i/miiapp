@@ -6,3 +6,4 @@ django-webpack-loader
 django-widget-tweaks
 django-summernote
 django-taggit
+django-rest-framework
